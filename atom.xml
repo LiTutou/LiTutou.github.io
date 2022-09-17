@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://litutou.github.io/</id>
+    <title>Gridea</title>
+    <updated>2022-09-17T08:22:57.059Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://litutou.github.io/"/>
+    <link rel="self" href="https://litutou.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://litutou.github.io/images/avatar.png</logo>
+    <icon>https://litutou.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[简单的vue大屏自适应]]></title>
+        <id>https://litutou.github.io/post/jian-dan-de-vue-da-ping-zi-gua-ying/</id>
+        <link href="https://litutou.github.io/post/jian-dan-de-vue-da-ping-zi-gua-ying/">
+        </link>
+        <updated>2022-08-25T08:44:21.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-javascript">&lt;template&gt;
+  &lt;div class=&quot;ScreenAdapter&quot;
+       :style=&quot;style&quot;&gt;
+    &lt;slot /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  components: {},
+  props: {
+    width: {
+      type: String,
+      default: &quot;1920&quot;,
+    },
+    height: {
+      type: String,
+      default: &quot;1080&quot;,
+    },
+  },
+  data () {
+    return {
+      style: {
+        width: this.width + &quot;px&quot;,
+        height: this.height + &quot;px&quot;,
+        transform: &quot;scale(1) translate(-50%, -50%)&quot;,
+      },
+    };
+  },
+  watch: {},
+  computed: {},
+  created () { },
+  mounted () {
+    this.setScale();
+    window.onresize = this.Debounce(this.setScale, 1000);
+  },
+  methods: {
+    Debounce: (fn, t) =&gt; {
+      const delay = t || 500;
+      let timer;
+      return function () {
+        const args = arguments;
+        if (timer) {
+          clearTimeout(timer);
+        }
+        const context = this;
+        timer = setTimeout(() =&gt; {
+          timer = null;
+          fn.apply(context, args);
+        }, delay);
+      };
+    },
+    // 获取放大缩小比例
+    getScale () {
+      const w = window.innerWidth / this.width;
+      const h = window.innerHeight / this.height;
+      return w &lt; h ? w : h;
+    },
+    // 设置比例
+    setScale () {
+      this.style.transform =
+        &quot;scale(&quot; + this.getScale() + &quot;) translate(-50%, -50%)&quot;;
+    },
+  },
+  beforeDestroy () {
+    window.onresize = null;
+    window.removeEventListener(&quot;resize&quot;, this.Debounce(this.setScale, 1000));
+  }
+};
+&lt;/script&gt;
+&lt;style scoped&gt;
+.ScreenAdapter {
+  height: 100%;
+  transform-origin: 0 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transition: 0.3s;
+}
+&lt;/style&gt;</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[正则表达式移除项目中空白行]]></title>
+        <id>https://litutou.github.io/post/zheng-ze-biao-da-shi-yi-chu-xiang-mu-zhong-kong-bai-xing/</id>
+        <link href="https://litutou.github.io/post/zheng-ze-biao-da-shi-yi-chu-xiang-mu-zhong-kong-bai-xing/">
+        </link>
+        <updated>2022-08-24T09:49:14.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>^\s*(?=\r?$)\n
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[时间戳转换]]></title>
+        <id>https://litutou.github.io/post/shi-jian-chuo-zhuan-huan/</id>
+        <link href="https://litutou.github.io/post/shi-jian-chuo-zhuan-huan/">
+        </link>
+        <updated>2022-08-24T09:48:07.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-javascript">let abc = new Date(new Date().getFullYear(), 11, 31).getTime()
+function getMyDate(str) {
+    var oDate = new Date(str),
+        oYear = oDate.getFullYear(),
+        oMonth = oDate.getMonth() + 1,
+        oDay = oDate.getDate(),
+        oTime = oYear + &quot;年&quot; + getzf(oMonth) + &quot;月&quot; + getzf(oDay) + &quot;日&quot;; //最后拼接时间
+    return oTime;
+}
+//补0操作
+function getzf(num) {
+    if (parseInt(num) &lt; 10) {
+        num = &quot;0&quot; + num;
+    }
+    return num;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[小黑点这里]]></title>
+        <id>https://litutou.github.io/post/test/</id>
+        <link href="https://litutou.github.io/post/test/">
+        </link>
+        <updated>2022-08-24T06:51:17.000Z</updated>
+        <content type="html"><![CDATA[<p>测试内容</p>
+<p>小小黑 不要再叫我老公了 我已经是你的前夫了</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>https://litutou.github.io/post/hello-gridea/</id>
+        <link href="https://litutou.github.io/post/hello-gridea/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="http://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+</feed>
